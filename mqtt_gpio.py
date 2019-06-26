@@ -22,7 +22,7 @@ try:
 
     def on_connect(client, userdata, flags, rc):
         if rc==0:
-            print "Connection ok, returned code" ,rc
+            print "Connection to " + MQTT_BROKER + " ok, returned code: " + str(rc)
         else:
             print "Not connected, returned code" ,rc
 
