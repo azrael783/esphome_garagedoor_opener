@@ -8,6 +8,8 @@ In order to controll the garage door opener from the company Summer, I bought th
 * Raspberry Pi Zero W (or any other version)
 * Power supply for Pi
 * 2 Channel relais
+* 4 cables (to connect relay with pi)
+* 3 cables (to connect relay with Connex PCB)
 * garage door opener pro+ (Sommer)
 * Connex adaptor (Sommer)
 
@@ -16,3 +18,7 @@ In order to controll the garage door opener from the company Summer, I bought th
 * RPi.GPIO
 
 `sudo apt install -y pip python-rpi.gpio` `sudo pip install paho-mqtt`
+
+# Installation
+
+Inside the wall controller there is certian place for a battery pack. Due to the fact that I don't use the battery I used this space to place the Pi and the relay to. I cut a thin (3mm thick) wood plate so that it fit in that space and mounted the Pi and the relay onto the plate 
