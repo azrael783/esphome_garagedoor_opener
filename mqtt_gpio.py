@@ -3,23 +3,21 @@
 
 import paho.mqtt.client as mqtt
 import RPi.GPIO as GPIO
-import time
 
-
+# MQTT setup
 MQTT_BROKER = "192.168.0.104"
 MQTT_PORT = 1883
 MQTT_KEEPALIVE_INTERVAL = 45
 MQTT_TOPIC = [("garage/auf",1),("garage/zu",1)]
 
+# GPIO setup
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(15, GPIO.OUT) # Channel 1 auf dem Relais
 GPIO.output(15, GPIO.LOW)
 GPIO.setup(16, GPIO.OUT) # Channel 2 auf dem Relais
 GPIO.output(16, GPIO.LOW)
 
-# The callback for when the client receives a CONNACK response from the server.
 try:
-
     def on_connect(client, userdata, flags, rc):
         if rc==0:
             print "Connection to " + MQTT_BROKER + " ok, returned code: " + str(rc)
