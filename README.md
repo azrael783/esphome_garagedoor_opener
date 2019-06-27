@@ -5,6 +5,8 @@ This is a simple project which lets you open and close your garage door using a 
 # Requirements
 ## Hardware
 * Raspberry Pi Zero W (or any other version)
+* Power supply for Pi
+* 2 Channel relais
 * garage door opener pro+ (Sommer)
 * Connex adaptor (Sommer)
 
