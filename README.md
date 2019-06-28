@@ -28,4 +28,4 @@ Inside the wall controller there is certian place for a battery pack. Due to the
 ## Software
 Download the mqtt_gpio.py and the garage_opener.service files. Store the Python script in any folder on the Pi you like (I put mine in `/home/pi/garage_prog`), for easier maintenance I also installed samba und gave access to the "garage_prog" folder. You will find the configuration file for samba also in this repo. 
 
-Store the garage_opener.service file in `/etc/systemd/system/`, change the path in the .service acordingly to your path. Reload the daemon with `sudo systemctl daemon-reload` then enable the Python script to be auto started after Pi has started with `sudo systemctl enable garage_opener`. You can check the status with `sudo systemctl status garage_opener`.
+Store the garage_opener.service file in `/etc/systemd/system/`, change the path in the .service accordingly to your path. Reload the daemon with `sudo systemctl daemon-reload` then enable the Python script to be auto started after Pi has started with `sudo systemctl enable garage_opener`. You can check the status with `sudo systemctl status garage_opener`.
