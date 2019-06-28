@@ -16,9 +16,16 @@ In order to controll the garage door opener from the company Summer, I bought th
 ## Software
 * paho-mqtt
 * RPi.GPIO
+* samba
 
-`sudo apt install -y pip python-rpi.gpio` `sudo pip install paho-mqtt`
+`sudo apt install -y pip samba` `sudo pip install paho-mqtt RPi.GPIO`
 
 # Installation
+## Hardware
 
-Inside the wall controller there is certian place for a battery pack. Due to the fact that I don't use the battery I used this space to place the Pi and the relay to. I cut a thin (3mm thick) wood plate so that it fit in that space and mounted the Pi and the relay onto the plate 
+Inside the wall controller there is certian place for a battery pack. Due to the fact that I don't use the battery I used this space to place the Pi and the relay to. I cut a thin (3mm thick) wood plate so that it fit in that space and mounted the Pi and the relay onto the plate. The plate is then fixed with double sided tape into the housing. Before I fixed the plate in the housing I did the wiring from the Pi to the relay and from the relay to the Connex PCB.
+
+## Software
+Download the mqtt_gpio.py and the garage_opener.service files. Store the Python script in any folder on the Pi you like (I put mine in `/home/pi/garage_prog`), for easier maintenance I also installed samba und gave access to the "garage_prog" folder. You will find the configuration file for samba also in this repo. 
+
+Store the garage_opener.service file in `/etc/systemd/system/`, change the path in the .service acordingly to your path. Reload the daemon with `sudo systemctl daemon-reload` then enable the Python script to be auto started after Pi has started with `sudo systemctl enable garage_opener`. You can check the status with `sudo systemctl status garage_opener`.
