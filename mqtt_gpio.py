@@ -5,7 +5,7 @@ import paho.mqtt.client as mqtt
 import RPi.GPIO as GPIO
 
 # MQTT setup
-MQTT_BROKER = "192.168.0.104"
+MQTT_BROKER = "192.168.xxx.xxx"
 MQTT_PORT = 1883
 MQTT_KEEPALIVE_INTERVAL = 45
 MQTT_TOPIC = [("garage/auf",1),("garage/zu",1)]
