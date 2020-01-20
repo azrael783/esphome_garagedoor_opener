@@ -1,6 +1,6 @@
 # garage_pi
 
-This is a simple project which lets you open and close your garage door using a Sommer garage door opener, a Raspberry Pi Zero, MQTT and Home Assistant.
+This is a simple project which lets you open and close your garage door using a [Sommer](https://www.sommer.eu/en-GB/) garage door opener, a Raspberry Pi Zero, MQTT and Home Assistant.
 In order to controll the garage door opener from the company Summer, I bought the "Connex" addon PCB which extends the wall controller with two inputs. The "Connex" PCB is providing 24 VDC as an outlet for the inputs, therefore I connected the GPIO pins of the Pi to a relay which is then connected to the "Connex" PCB. 
 
 # Requirements
@@ -10,8 +10,8 @@ In order to controll the garage door opener from the company Summer, I bought th
 * 2 Channel relais
 * 4 cables (to connect relay with pi)
 * 3 cables (to connect relay with Connex PCB)
-* garage door opener pro+ (Sommer)
-* Connex adaptor (Sommer)
+* garage door opener [pro+](https://www.sommer.eu/en-GB/pro-base.html) (Sommer) 
+* [Connex](https://www.sommer-shops.eu/de/conex.html) adaptor (Sommer)
 
 ## Software
 * paho-mqtt
