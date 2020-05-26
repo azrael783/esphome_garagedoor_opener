@@ -29,50 +29,20 @@ Inside the wall controller there is certian place for a battery pack. Due to the
 ## Software
 Download the mqtt_gpio.py and the garage_opener.service files. Store the Python script in any folder on the Pi you like (I put mine in `/home/pi/garage_prog`), for easier maintenance I also installed samba und gave access to the "garage_prog" folder. You will find the configuration file for samba also in this repo. Adjust the mqtt-gpio.py to your MQTT broker by changing the variable "MQTT_BROKER". Please note that my broker doesn't need an user and password to connect.
 
-Store the garage_opener.service file in `/etc/systemd/system/`, change the path in the .service accordingly to your path. Reload the daemon with `sudo systemctl daemon-reload` then enable the Python script to be auto started after Pi has started with `sudo systemctl enable garage_opener`. You can check the status with `sudo systemctl status garage_opener`. The Pyhton script will listen on two MQTT topics `garage/auf` and `garage/zu` which stands for door open and close. Create two MQTT switches in Home Assistant which will publish `on` if you activate them:
+Store the garage_opener.service file in `/etc/systemd/system/`, change the path in the .service accordingly to your path. Reload the daemon with `sudo systemctl daemon-reload` then enable the Python script to be auto started after Pi has started with `sudo systemctl enable garage_opener`. You can check the status with `sudo systemctl status garage_opener`. The Pyhton script listens on the topic `garage/#`and publishes the open and close state at the topic `garage/state`. In the previos version of the script you had to create an automation to turn of the gpio pins of the Pi. This is now done by the script itself and the automations are not needed any more. Create a MQTT cover in Home Assistant adding the following lines to the `configuration.yaml`:
+
+
 ```
 # configuration.yaml
-switch:
+cover:
   - platform: mqtt
-    name: Garage auf
-    icon: mdi:garage-open
-    command_topic: "garage/auf"
-    payload_on: "ON"
-    payload_off: "OFF"
-  - platform: mqtt
-    name: Garage zu 
-    icon: mdi:garage
-    command_topic: "garage/zu"
-    payload_on: "ON"
-    payload_off: "OFF"
-```
-I then created two automations which immediately "turn off" the topic again: 
-```
-# automation.yaml
-- id: garage_auf_auto_aus
-  alias: Garage "auf" auto_aus
-  trigger:
-  - entity_id: switch.garage_auf
-    for: 00:00:01
-    from: 'off'
-    platform: state
-    to: 'on'
-  condition: []
-  action:
-  - data:
-      entity_id: switch.garage_auf
-    service: homeassistant.turn_off
-- id: garage_zu_auto_aus
-  alias: Garage "zu" auto_aus
-  trigger:
-  - entity_id: switch.garage_zu
-    for: 00:00:01
-    from: 'off'
-    platform: state
-    to: 'on'
-  condition: []
-  action:
-  - data:
-      entity_id: switch.garage_zu
-    service: homeassistant.turn_off
+    name: 'Garagentor'
+    command_topic: "garage/command"
+    device_class: garage
+    payload_close: "close"
+    payload_open: "open"
+    state_topic: "garage/state"
+    state_open: "opened"
+    state_closed: "closed"
+    retain: false
 ```
