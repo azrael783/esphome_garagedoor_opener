@@ -1,0 +1,82 @@
+esphome:
+  name: garagentor
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: !secret ssid
+  password: !secret wlan_pwd
+  manual_ip:
+    static_ip: 192.168.0.144
+    gateway: 192.168.0.1
+    subnet: 255.255.255.0
+  #use_address: 192.168.0.27
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Nodemcu 1 Fallback Hotspot"
+    password: "7WHmKojbIpUk"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+switch:
+  - platform: gpio
+    pin: 
+      number: D1
+      inverted: True
+    name: "Garage door Open Switch"
+    id: open_switch
+    on_turn_on:
+      - delay: 250ms
+      - switch.turn_off: open_switch
+    restore_mode: ALWAYS_OFF
+  - platform: gpio
+    pin: 
+      number: D2
+      inverted: True
+    name: "Garage door close Switch"
+    id: close_switch
+    on_turn_on:
+      - delay: 250ms
+      - switch.turn_off: close_switch
+    restore_mode: ALWAYS_OFF
+  - platform: restart
+    name: "Garagentor Restart"
+  - platform: shutdown
+    name: "Garagentor Shutdown"
+    
+cover:
+  - platform: template
+    name: "Garagentor"
+    open_action:
+      # Cancel any previous action
+      - switch.turn_off: close_switch
+      # Turn the OPEN switch on briefly
+      - switch.turn_on: open_switch
+      - delay: 0.1s
+      - switch.turn_off: open_switch
+    close_action:
+      - switch.turn_off: open_switch
+      - switch.turn_on: close_switch
+      - delay: 0.1s
+      - switch.turn_off: close_switch
+    stop_action:
+      - switch.turn_off: close_switch
+      - switch.turn_off: open_switch
+    optimistic: true
+    assumed_state: true
+
+text_sensor:
+  - platform: wifi_info
+    ip_address:
+      name: "Garagentor IP"
+    ssid:
+      name: "Garagentor SSID"
