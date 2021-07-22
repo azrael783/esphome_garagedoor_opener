@@ -1,6 +1,6 @@
 # esphome_garagedoor_opener
 
-This is a simple project which lets you open and close your garage door using a [Sommer](https://www.sommer.eu/en-GB/) garage door opener, an ESP8266 flashed with [ESPHOME](https://www.esphome.io) and Home Assistant.
+This is a simple project which lets you open and close your garage door using a [Sommer](https://www.sommer.eu/en-GB/) garage door opener, an ESP8266 flashed with [ESPHOME](https://esphome.io) and Home Assistant.
 In order to controll the garage door opener from the company Summer, I bought the "Connex" addon PCB which extends the wall controller with two inputs. The "Connex" PCB is providing 24 VDC as an outlet for the inputs, therefore I connected the GPIO pins of the ESP8266 to a relay which is then connected to the "Connex" PCB. 
 
 # Requirements
@@ -14,7 +14,7 @@ In order to controll the garage door opener from the company Summer, I bought th
 * [Connex](https://www.sommer-shops.eu/de/conex.html) adaptor (Sommer)
 
 ## Software
-* firmware created with [ESPHOME](https.//www.esphome.io)
+* firmware created with [ESPHOME](https://esphome.io)
 
 # Installation
 ## Hardware
