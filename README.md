@@ -14,7 +14,7 @@ In order to controll the garage door opener from the company Summer, I bought th
 * [Connex](https://www.sommer-shops.eu/de/conex.html) adaptor (Sommer)
 
 ## Software
-* firmware created with ESPHOME
+* firmware created with [ESPHOME](https.//www.esphome.io)
 
 # Installation
 ## Hardware
