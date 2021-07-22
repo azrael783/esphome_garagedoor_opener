@@ -14,7 +14,7 @@ wifi:
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
-    ssid: "Nodemcu 1 Fallback Hotspot"
+    ssid: "Garagentor Fallback Hotspot"
     password: "7WHmKojbIpUk"
 
 captive_portal:
