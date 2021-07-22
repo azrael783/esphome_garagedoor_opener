@@ -1,16 +1,16 @@
 esphome:
   name: garagentor
-  platform: ESP8266
+  platform: ESP8266         # To be changed according to the used board
   board: nodemcuv2
 
 wifi:
-  ssid: !secret ssid
-  password: !secret wlan_pwd
-  manual_ip:
+  ssid: !secret ssid          # Replace either with your secret or your SSID name
+  password: !secret wlan_pwd  # Replace either with your secret or with your password
+  manual_ip:                  # if you want to use DHCP place a '#' in front of lines 9 to 12
     static_ip: 192.168.0.144
     gateway: 192.168.0.1
     subnet: 255.255.255.0
-  #use_address: 192.168.0.27
+  #use_address: 192.168.0.27 #used the flash over the air if DHCP was used in a first setup
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
@@ -25,12 +25,13 @@ logger:
 # Enable Home Assistant API
 api:
 
+# Enable over the air updates
 ota:
 
 switch:
   - platform: gpio
     pin: 
-      number: D1
+      number: D1                      # if you use other pins than D1 and D2 check the behavior of these pins during reboot of the ESP device
       inverted: True
     name: "Garage door Open Switch"
     id: open_switch
