@@ -5,7 +5,7 @@ In order to controll the garage door opener from the company Summer, I bought th
 
 # Requirements
 ## Hardware
-* NodemcuV3 (or any other ESP device which is supported by esphome)
+* NodeMCU V3 (or any other ESP device which is supported by esphome)
 * 5V Power supply
 * 2 Channel relais
 * 4 cables (to connect relay with pi)
@@ -19,8 +19,7 @@ In order to controll the garage door opener from the company Summer, I bought th
 # Installation
 ## Hardware
 
-Inside the wall controller there is certian place for a battery pack. Due to the fact that I don't use the battery I used this space to place the Pi and the relay to. I cut a thin (3mm thick) wood plate so that it fit in that space and mounted the Pi and the relay onto the plate. The plate is then fixed with double sided tape into the housing. Before I fixed the plate in the housing I did the wiring from the Pi to the relay and from the relay to the Connex PCB. I used pins 15 and 16 to connect to the relay. If you use other pins, please adapt the mqtt_gpio.py script.
+Inside the wall controller there is certian place for a battery pack. Due to the fact that I don't use the battery I used this space to place the NodeMCU and the relay to. I cut a thin (3mm thick) wood plate so that it fit in that space and mounted the NodeMCU and the relay onto the plate. The plate is then fixed with double sided tape into the housing. Before I fixed the plate in the housing I did the wiring from the NodeMCU to the relay and from the relay to the Connex PCB. I used pins D1 and D2 to connect to the relay. If you use other pins, please adapt them  in  ESPHOME.
 
-
-## Software
-work in progress
+# Software
+Copy the `garagedoor.yaml` to your `/config` Folder from ESPHOME, adapt the IP address or remove the static IP, compile and transfer the firmware by hitting the 'Install' button. After the NodeMCU is up and running open your Home Assistant UI got to 'Settings --> Integration' and add a new ESPHOME device by either putting in the IP address of the NodeMCU or putting in `garagedoor.local`. Now you should see one device with 9 entities which you can add to your lovelace UI.
